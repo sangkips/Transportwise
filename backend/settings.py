@@ -32,7 +32,7 @@ INSTALLED_APPS = [
 
     #third party apps
     'rest_framework',
-    'phone_field',
+    "phonenumber_field",
 
 ]
 

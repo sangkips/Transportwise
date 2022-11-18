@@ -3,7 +3,7 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from phone_field import PhoneField
+from phonenumber_field.modelfields import PhoneNumberField
 
 class CustomUserManager(BaseUserManager):
 
@@ -52,7 +52,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_created = models.DateTimeField(auto_now_add=True)
-    phone_number = PhoneField(blank=True, help_text='Contact phone number')
+    phone_number = PhoneNumberField(unique=True)
     user_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     
     objects = CustomUserManager()
